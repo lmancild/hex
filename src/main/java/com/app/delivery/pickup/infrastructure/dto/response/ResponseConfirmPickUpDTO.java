@@ -14,19 +14,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResponseBaseDTO {
+public class ResponseConfirmPickUpDTO {
 
 	private Date timestamp;
 	private String status;
-	private String path;
-	private Object data;
 	private List<ResponseBaseErrorDTO> errors;
 	
-	public ResponseBaseDTO(Builder builder) {
+	public ResponseConfirmPickUpDTO(Builder builder) {
 		this.timestamp = builder.timestamp;
 		this.status = builder.status;
-		this.path = builder.path;
-		this.data = builder.data;
 		this.errors = builder.errors;
 	}
 
@@ -38,14 +34,6 @@ public class ResponseBaseDTO {
 	
 	public String getStatus() {
 		return status;
-	}
-	
-	public String getPath() {
-		return path;
-	}
-	
-	public Object getData() {
-		return data;
 	}
 	
 	public List<ResponseBaseErrorDTO> getErrors() {
@@ -83,23 +71,11 @@ public class ResponseBaseDTO {
 
 		private Date timestamp;
 		private String status;
-		private String path;
-		private Object data;
 		private List<ResponseBaseErrorDTO> errors;
 
 		public Builder(String status) {
 			this.status = status;
 			this.timestamp = new Date();
-		}
-
-		public Builder path(String path) {
-			this.path = path;
-			return this;
-		}
-
-		public Builder data(Object data) {
-			this.data = data;
-			return this;
 		}
 
 		public Builder errors(List<ResponseBaseErrorDTO> errors) {
@@ -115,8 +91,8 @@ public class ResponseBaseDTO {
 			return this;
 		}
 		
-		public ResponseBaseDTO build() {
-			return new ResponseBaseDTO(this);
+		public ResponseConfirmPickUpDTO build() {
+			return new ResponseConfirmPickUpDTO(this);
 		}
 
 	}

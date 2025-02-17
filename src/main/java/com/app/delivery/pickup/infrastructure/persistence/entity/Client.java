@@ -42,5 +42,14 @@ public class Client  implements Serializable {
 	
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Purchase> pruchases;
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", clientId=" + clientId + ", pruchases=" + pruchases + "]";
+	}
+	
+	
+	
+	
 	
 }

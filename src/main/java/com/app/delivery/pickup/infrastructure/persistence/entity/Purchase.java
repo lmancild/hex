@@ -3,8 +3,6 @@ package com.app.delivery.pickup.infrastructure.persistence.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,7 +37,6 @@ public class Purchase  implements Serializable {
 	@Column(name="ID")
 	private Long id;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="CLIENT_ID")
 	private Client client;
@@ -52,4 +49,12 @@ public class Purchase  implements Serializable {
 	
 	@Column(name="PURCHASE_SATUS")
 	private String status;
+
+	@Override
+	public String toString() {
+		return "Purchase [id=" + id + ", client=" + client + ", code=" + code + ", pickUpDate=" + pickUpDate
+				+ ", status=" + status + "]";
+	}
+	
+	
 }

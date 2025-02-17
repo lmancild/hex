@@ -13,11 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.app.delivery.pickup.application.ports.in.service.IOrchestratorConfirmPickUpService;
 import com.app.delivery.pickup.infrastructure.controller.PostConfirmPickUpController;
-import com.app.delivery.pickup.infrastructure.dto.response.ResponseBaseDTO;
-import com.app.delivery.pickup.infrastructure.service.RequestPickUpDispatcherService;
-
-import reactor.core.publisher.Mono;
+import com.app.delivery.pickup.infrastructure.dto.response.ResponseConfirmPickUpDTO;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(PostConfirmPickUpController.class)
@@ -27,7 +25,7 @@ public class PostConfirmPickUpControllerTest {
 	private MockMvc mockMvc;
 	
 	@MockBean
-	private RequestPickUpDispatcherService dispatcherService; 
+	private IOrchestratorConfirmPickUpService orchestratorConfirmPickUpService; 
 
 	public PostConfirmPickUpControllerTest(MockMvc mockMvc) {
 		super();
@@ -36,8 +34,8 @@ public class PostConfirmPickUpControllerTest {
 
 	@Test
 	void shouldReturnExpectedResponse() throws Exception {
-		when(dispatcherService.delegateMessage(null)).thenReturn(Mono.just(new 
-				ResponseBaseDTO.Builder("OK").build()));
+		when(orchestratorConfirmPickUpService.process(null)).thenReturn(new 
+				ResponseConfirmPickUpDTO.Builder("OK").build());
 
         mockMvc.perform(get("/v1/api/purchase/pick-up/confirm")
                 .contentType(MediaType.APPLICATION_JSON))

@@ -14,7 +14,7 @@ import com.app.delivery.pickup.application.vo.RequestConfirmPickUpVO;
 import com.app.delivery.pickup.domain.ports.in.process.IProcessConfirmPickUpService;
 import com.app.delivery.pickup.domain.service.ProcessConfirmPickUpServiceImpl;
 import com.app.delivery.pickup.infrastructure.dto.request.RequestEmailNotificationDTO;
-import com.app.delivery.pickup.infrastructure.dto.response.ResponseBaseDTO;
+import com.app.delivery.pickup.infrastructure.dto.response.ResponseConfirmPickUpDTO;
 
 /**
  * @author lmancild
@@ -45,10 +45,10 @@ public class OrchestratorPickUpServiceImpl implements IOrchestratorConfirmPickUp
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
-	public ResponseBaseDTO process(RequestConfirmPickUpVO request) {
+	public ResponseConfirmPickUpDTO process(RequestConfirmPickUpVO request) {
 	
 		log.info("--- start process confirm pick up for: {}, client id: {} ---", request.getPurchaseCode(), request.getClientId());
-		ResponseBaseDTO response = new ResponseBaseDTO.Builder("OK").build();
+		ResponseConfirmPickUpDTO response = new ResponseConfirmPickUpDTO.Builder("OK").build();
 		processService.changeStatusToConfirm(request);
 		emailDispatcherService.dispatchEmailNotification(new RequestEmailNotificationDTO(request.getPurchaseCode(),
 				request.getClientId()));

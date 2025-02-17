@@ -1,6 +1,6 @@
 package com.app.delivery.pickup.infrastructure.adapter.repository;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.app.delivery.pickup.application.command.CommandConfirmPickUp;
 import com.app.delivery.pickup.domain.ports.out.repository.IPurchaseRepository;
@@ -14,7 +14,7 @@ import jakarta.persistence.EntityManager;
  * @since 1.0.0
  *
  */
-@Service
+@Repository
 public class PurchaseRepositoryAdapter implements IPurchaseRepository {
 
 //	private JpaPurchaseRepository jpaPurchaseRepository;

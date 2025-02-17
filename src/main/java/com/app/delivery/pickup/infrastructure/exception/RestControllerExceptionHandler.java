@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-import com.app.delivery.pickup.infrastructure.dto.response.ResponseBaseDTO;
-import com.app.delivery.pickup.infrastructure.dto.response.ResponseBaseDTO.ResponseBaseErrorDTO;
+import com.app.delivery.pickup.infrastructure.dto.response.ResponseConfirmPickUpDTO;
+import com.app.delivery.pickup.infrastructure.dto.response.ResponseConfirmPickUpDTO.ResponseBaseErrorDTO;
 
 /**
  * 
@@ -26,10 +26,10 @@ public class RestControllerExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<ResponseBaseDTO> resourceNotFoundException(MethodArgumentNotValidException ex,
+	public ResponseEntity<ResponseConfirmPickUpDTO> resourceNotFoundException(MethodArgumentNotValidException ex,
 			WebRequest request) {
 		
-		ResponseBaseDTO.Builder response = new ResponseBaseDTO.Builder("ERROR");
+		ResponseConfirmPickUpDTO.Builder response = new ResponseConfirmPickUpDTO.Builder("ERROR");
 		if(ex.getAllErrors() != null && !ex.getAllErrors().isEmpty()){
 			ex.getAllErrors().forEach(e -> {
 				response.error(new ResponseBaseErrorDTO(e.getObjectName(), e.getDefaultMessage()));	

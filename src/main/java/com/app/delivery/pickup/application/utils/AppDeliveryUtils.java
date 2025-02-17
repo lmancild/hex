@@ -37,23 +37,7 @@ public class AppDeliveryUtils {
 		} catch (JsonProcessingException e) {
 			log.error("Error to format json", e);
 		}
-		return "";
-	}
-
-	
-	/**
-	 * 
-	 * @param <T>
-	 * @param json
-	 * @param clazz
-	 * @return
-	 */
-	public static <T> T jsonToObject(String json, Class<T> clazz) {
-		try {
-			return mapper.readValue(json, clazz);
-		} catch (JsonProcessingException e) {
-			log.error("Error tranform json to object", e);
-		}
 		return null;
 	}
+
 }

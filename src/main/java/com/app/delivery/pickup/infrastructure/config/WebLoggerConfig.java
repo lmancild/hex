@@ -23,7 +23,7 @@ public class WebLoggerConfig {
         filter.setIncludePayload(true);
         filter.setMaxPayloadLength(100000);
         filter.setIncludeHeaders(true);
-        filter.setAfterMessagePrefix("[EXPORT CERTIFICATE REQUEST DATA] : ");
+        filter.setAfterMessagePrefix("[DATA] : ");
         return filter;
     }
 }
